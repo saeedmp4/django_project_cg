@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}add item{% endblock title %}
+
+{% block content %}
+    <form enctype="multipart/form-data" action="{% url 'additem' %}" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">send</button>   
+    </form
+
+{% endblock content %}
+
+
+

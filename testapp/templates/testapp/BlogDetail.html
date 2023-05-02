@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Detail{% endblock %}
+
+{% block content %}
+
+<h1>{{ blog.title }}</h1>
+
+    {% if user in blog.likes.all %}
+        <a href="{% url 'postunlike' blog.id %}">unlike</a>
+    {% else %}
+        <a href="{% url 'postlike' blog.id %}">like</a>
+    {% endif %}
+
+    <p>{{ blog.content }}
+        {{ blog.date }}
+    </p>
+    <img style="width: 300px;" src="{{ blog.image.url }}" alt="">
+    
+{% endblock %}
+
+
+

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% load static %}
+{% block content %}
+{% if user.is_authenticated %}
+        <h1>{{ user.username }}</h1>
+    {% endif %}
+      
+    
+    <div class="row row-cols-auto">
+        {% for post in blogpost %}
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ post.image.url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ post.title }}</h5>
+                      <p class="card-text">{{ post.getsnippet }}</p>
+                      <a href="{% url 'detail' post.id %}" class="btn btn-primary">detail</a>
+                    </div>
+                  </div>
+            </div>
+            
+
+            
+
+        
+    {% endfor %}
+    </div>
+    
+
+    <a href="additem">add item</a>
+
+    {% if user.is_authenticated %}
+        <form action="{% url 'accounts:logout' %}" method="POST">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    {% endif %}
+    
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
